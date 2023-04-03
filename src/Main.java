@@ -34,8 +34,9 @@ class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.println("[Horse Betting]");
-        System.out.println("Welcome to Horse Betting, the starting deposit is 100.");
+        System.out.println("The starting deposit is 100.");
         System.out.println("The betting multiplier is 2x.");
+        System.out.println("To watch the horse race without betting, select 0 players.");
         System.out.println("How many players will be playing?");
 
         int playerCount = sc.nextInt();
@@ -151,10 +152,12 @@ class Main {
             for (Player i : hi) {
                 i.resetBets();
             }
-            addDelay();
-            System.out.print("\033[H\033[2J");
-            System.out.flush();
-            System.out.println("All bets are now reset to $0.");
+            if (hi.size() > 0) {
+                addDelay();
+                System.out.print("\033[H\033[2J");
+                System.out.flush();
+                System.out.println("All bets are now reset to $0.");
+            }
             for (int i = 0; i < hi.size(); i++) {
                 System.out.println("Player " + (i + 1) + " now has $" + hi.get(i).getMoney() + ".");
             }

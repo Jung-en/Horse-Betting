@@ -64,21 +64,27 @@ public class Player {
     }
 
     public void horseOneWon() {
-        int amountWon = 2 * horseOneBetAmount;
-        this.money += amountWon;
-        System.out.println("Player " + playerID + " won $" + amountWon + ".");
+        if (horseOneBetAmount > 0) {
+            int amountWon = 2 * horseOneBetAmount;
+            this.money += amountWon;
+            System.out.println("Player " + playerID + " won $" + amountWon + ".");
+        }
     }
 
     public void horseTwoWon() {
-        int amountWon = 2 * horseTwoBetAmount;
-        this.money += amountWon;
-        System.out.println("Player " + playerID + " won $" + amountWon + ".");
+        if (horseTwoBetAmount > 0) {
+            int amountWon = 2 * horseTwoBetAmount;
+            this.money += amountWon;
+            System.out.println("Player " + playerID + " won $" + amountWon + ".");
+        }
     }
 
     public void horseThreeWon() {
-        int amountWon = 2 * horseThreeBetAmount;
-        this.money += amountWon;
-        System.out.println("Player " + playerID + " won $" + amountWon + ".");
+        if (horseThreeBetAmount > 0) {
+            int amountWon = 2 * horseThreeBetAmount;
+            this.money += amountWon;
+            System.out.println("Player " + playerID + " won $" + amountWon + ".");
+        }
     }
 
     public void resetBets() {
