@@ -38,7 +38,7 @@ public class Horse extends Thread {
         return location >= 50;
     }
 
-    public void resetHorses() {
+    public static void resetHorses() {
         nextHorseID = 0;
     }
 }

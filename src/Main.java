@@ -37,12 +37,17 @@ class Main {
         System.out.println("Welcome to Horse Betting, the starting deposit is 100.");
         System.out.println("The betting multiplier is 2x.");
         System.out.println("How many players will be playing?");
+
         int playerCount = sc.nextInt();
         ArrayList<Player> hi = new ArrayList<>();
         for (int i = 0; i < playerCount; i++) {
             Player playa = new Player();
             hi.add(playa);
         }
+
+        Horse h1, h2, h3;
+
+        Thread t1, t2, t3;
 
         boolean happy;
         boolean happy2 = false;
@@ -65,13 +70,16 @@ class Main {
                             System.out.println("Which horse would you like to bet on?");
                             System.out.println("Options are: 1, 2 or 3.");
                             int horseChoice = sc.nextInt();
-                            if (horseChoice == 1 || horseChoice == 2 || horseChoice == 3) {
-                                System.out.println("How much would you like to bet?");
-                                int amount = sc.nextInt();
-                                hi.get(i).placeBet(horseChoice, amount);
-                            } else {
+                            while (horseChoice != 1 && horseChoice != 2 && horseChoice != 3) {
                                 System.out.println("You must choose Horse 1, 2 or 3.");
+                                addDelay();
+                                System.out.println("Which horse would you like to bet on?");
+                                System.out.println("Options are: 1, 2 or 3.");
+                                horseChoice = sc.nextInt();
                             }
+                            System.out.println("How much would you like to bet?");
+                            int amount = sc.nextInt();
+                            hi.get(i).placeBet(horseChoice, amount);
                             addDelay();
                             System.out.println("Player " + (i + 1) + " Choose an Option: ");
                             optionMenu();
@@ -84,6 +92,7 @@ class Main {
                             break;
                         case 4:
                             happy = true;
+                            System.out.println("Player " + (i + 1) + " your turn is over.");
                             addDelay();
                             break;
                     }
@@ -91,13 +100,13 @@ class Main {
             }
             System.out.println("The race will now begin.");
 
-            Horse h1 = new Horse();
-            Horse h2 = new Horse();
-            Horse h3 = new Horse();
+            h1 = new Horse();
+            h2 = new Horse();
+            h3 = new Horse();
 
-            Thread t1 = new Thread(h1);
-            Thread t2 = new Thread(h2);
-            Thread t3 = new Thread(h3);
+            t1 = new Thread(h1);
+            t2 = new Thread(h2);
+            t3 = new Thread(h3);
 
             t1.start();
             t2.start();
@@ -137,11 +146,14 @@ class Main {
             for (Player i : hi) {
                 i.resetBets();
             }
+            addDelay();
+            System.out.print("\033[H\033[2J");
+            System.out.flush();
             System.out.println("All bets are now reset to $0.");
             for (int i = 0; i < hi.size(); i++) {
-                System.out.println("Player " + (i + 1) + " has $" + hi.get(i).getMoney());
+                System.out.println("Player " + (i + 1) + " now has $" + hi.get(i).getMoney() + ".");
             }
-            h1.resetHorses();
+            Horse.resetHorses();
             int stop = 0;
             for (int i = 1; i <= hi.size(); i++) {
                 System.out.println("Player " + i + " would you like to continue? Y/N");
