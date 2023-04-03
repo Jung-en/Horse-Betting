@@ -95,6 +95,11 @@ class Main {
                             System.out.println("Player " + (i + 1) + " your turn is over.");
                             addDelay();
                             break;
+                        default:
+                            System.out.println("Choose an Option from 1-4!");
+                            addDelay();
+                            optionMenu();
+                            break;
                     }
                 } while (!happy);
             }
